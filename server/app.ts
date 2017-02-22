@@ -1,5 +1,8 @@
 "use strict";
 
+import * as dotenv from 'dotenv';
+dotenv.config();
+
 import express from 'express';
 import path from 'path';
 import favicon from 'serve-favicon';
@@ -10,6 +13,12 @@ import bodyParser from 'body-parser';
 import { HttpError } from './models/http_error'
 import { index } from './routes/index';
 import { users } from './routes/users';
+
+import { Database } from './config/db';
+(<any>global).knex = Database.get();
+
+import { KnexUtils } from './utils/knexUtils';
+KnexUtils.logVersion()
 
 export default class App {
   public app: express.Application;
