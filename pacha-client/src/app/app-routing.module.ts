@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { PublicLandingComponent } from './public-landing/public-landing.component'
+
 const routes: Routes = [
-  {
-    path: '',
-    children: []
-  }
+  { path: '', component: PublicLandingComponent }
 ];
 
 @NgModule({
