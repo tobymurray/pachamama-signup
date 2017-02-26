@@ -1,69 +1,52 @@
-<form action="/submit" method="post">
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
   <div>
     <label>First Name:</label>
-    <input name="firstName" type="text" placeholder="John" required>
+    <input name="firstName" type="text" formControlName="firstName">
     <label>Last Name:</label>
-    <input name="lastName" type="text" placeholder="Smith" required>
+    <input name="lastName" type="text" formControlName="lastName">
   </div>
   <div>
     <label>Address Line 1: </label>
-    <input name="addressOne" type="text" placeholder=" 123 Street Rd.">
+    <input name="addressOne" type="text" formControlName="addressOne">
     <label>Address Line 2:</label>
-    <input name="addressTwo" type="text">
+    <input name="addressTwo" type="text" formControlName="addressTwo">
   </div>
   <div>
     <label>City:</label>
-    <input name="city" type="text" value="Ottawa">
+    <input name="city" type="text" value="Ottawa" formControlName="city">
     <label>Province:</label>
     <select>
-					<option>Alberta</option>
-					<option>British Colombia</option>
-					<option>Labrador</option>
-					<option>Manitoba</option>
-					<option>New Brunswick</option>
-					<option>Newfoundland</option>
-					<option>Nova Scotia</option>
-					<option>Nunavut</option>
-					<option>North West Territories</option>
-					<option>Ontario</option>
-					<option>Prince Edward Island</option>
-					<option>Quebec</option>
-					<option>Saskatchewen</option>
-					<option>Yukon Territories</option>
-				</select>
+      <option *ngFor="let province of provinces">{{province}}</option>
+		</select>
   </div>
   <div>
     <label>Postal Code:</label>
-    <input name="postalCode" type="text" placeholder="K1K 1K1">
+    <input name="postalCode" type="text" placeholder="K1K 1K1" formControlName="postalCode">
     <label>Phone:</label>
-    <input name="phone" type="tel" placeholder="123-123-1234">
+    <input name="phone" type="tel" placeholder="613-555-5555" formControlName="phone">
   </div>
   <div>
     <label>Share Size:</label>
-    <input name="shareSize" value="half" type="radio">
-    <label>Half ($350)</label>
-    <input name="shareSize" value="full" type="radio">
-    <label>Full ($600)</label>
+    <label><input type="radio" formControlName="shareSize" value="halfShare">Half Share ($350)</label>
+    <label><input type="radio" formControlName="shareSize" value="fullShare">Full Share ($600)</label>
+  </div>
+  <div>
     <label>Pick Up Location:</label>
-    <select name="pickUpLocation">
-					<option value="MooShu">Moo Shu</option>
-					<option value="Orleans">Orleans</option>
-					<option value="RaCenter">RA Center</option>
-					<option value="Kanata">Kanata</option>
-					<option value="farm">Farm</option>
-				</select>
+    <select formControlName="pickUpLocation">
+      <option *ngFor="let location of pickUpLocations" [value]="location">{{location}}</option>
+		</select>
   </div>
   <div>
     <label>Email:</label>
-    <input name="email" type="email" placeholder="yourname@email.com">
+    <input name="email" type="email" placeholder="yourname@email.com" formControlName="email">
   </div>
-  <div>
+  <div formGroupName="passwords">
     <label>Password:</label>
-    <input name="password" type="password" required minlength="5">
+    <input type="password" placeholder="Password" formControlName="password"><br>
     <label>Confirm Password:</label>
-    <input type="password" required minlength="5">
+    <input type="password" placeholder="Confirm Password" formControlName="confirmPassword"><br>
   </div>
   <div>
-    <input type="submit">
+    <button type="submit" [disabled]="!form.valid">Sign Up</button><br>
   </div>
 </form>
