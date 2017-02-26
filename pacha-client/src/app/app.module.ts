@@ -7,12 +7,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PublicLandingComponent } from './public-landing/public-landing.component';
+import { CsaSignUpComponent } from './csa-sign-up/csa-sign-up.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    PublicLandingComponent
+    PublicLandingComponent,
+    CsaSignUpComponent
   ],
   imports: [
     BrowserModule,

@@ -10,78 +10,9 @@
       You can sign up below – you will receive and email back from us within the day! Or send any inquiries to cailyn@pachamamaorganics.ca
       Prices: Full Share – $600 Half Share – $350</p>
   </div>
-
   <div id="form" class="well">
     <h3 id="signUp">Sign Up</h3>
     <p> For more information <a href="#">product page</a>.</p>
-    <form action="/submit" method="post">
-      <div>
-        <label>First Name:</label>
-        <input name="firstName" type="text" placeholder="John" required>
-        <label>Last Name:</label>
-        <input name="lastName" type="text" placeholder="Smith" required>
-      </div>
-      <div>
-        <label>Address Line 1: </label>
-        <input name="addressOne" type="text" placeholder=" 123 Street Rd.">
-        <label>Address Line 2:</label>
-        <input name="addressTwo" type="text">
-      </div>
-      <div>
-        <label>City:</label>
-        <input name="city" type="text" value="Ottawa">
-        <label>Province:</label>
-        <select>
-					<option>Alberta</option>
-					<option>British Colombia</option>
-					<option>Labrador</option>
-					<option>Manitoba</option>
-					<option>New Brunswick</option>
-					<option>Newfoundland</option>
-					<option>Nova Scotia</option>
-					<option>Nunavut</option>
-					<option>North West Territories</option>
-					<option>Ontario</option>
-					<option>Prince Edward Island</option>
-					<option>Quebec</option>
-					<option>Saskatchewen</option>
-					<option>Yukon Territories</option>
-				</select>
-      </div>
-      <div>
-        <label>Postal Code:</label>
-        <input name="postalCode" type="text" placeholder="K1K 1K1">
-        <label>Phone:</label>
-        <input name="phone" type="tel" placeholder="123-123-1234">
-      </div>
-      <div>
-        <label>Share Size:</label>
-        <input name="shareSize" value="half" type="radio">
-        <label>Half ($350)</label>
-        <input name="shareSize" value="full" type="radio">
-        <label>Full ($600)</label>
-        <label>Pick Up Location:</label>
-        <select name="pickUpLocation">
-					<option value="MooShu">Moo Shu</option>
-					<option value="Orleans">Orleans</option>
-					<option value="RaCenter">RA Center</option>
-					<option value="Kanata">Kanata</option>
-					<option value="farm">Farm</option>
-				</select>
-      </div>
-      <div>
-        <label>Email:</label>
-        <input name="email" type="email" placeholder="yourname@email.com">
-      </div>
-      <div>
-        <label>Password:</label>
-        <input name="password" type="password" required minlength="5">
-        <label>Confirm Password:</label>
-        <input type="password" required minlength="5">
-      </div>
-      <div>
-        <input type="submit">
-      </div>
-    </form>
+    <app-csa-sign-up></app-csa-sign-up>
   </div>
 </div>
