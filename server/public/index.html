@@ -9,9 +9,6 @@
 	<link rel=stylesheet type="text/css" href="stylesheets/style.css">
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<!-- jQuery library -->
-
-	<script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
 	<title>Sign Up</title>
 </head>
 
@@ -78,7 +75,7 @@
 	<div id="form" class="well">
 		<h3 id="signUp">Sign Up</h3>
 		<p> For more information <a href="#">product page</a>.</p>
-		<form>
+		<form action="/submit" method="post">
 			<div>
 				<label>First Name:</label>
 				<input name="firstName" type="text" placeholder="John" required>
@@ -114,32 +111,32 @@
 			</div>
 			<div>
 				<label>Postal Code:</label>
-				<input name="postal" type="text" placeholder="K1K 1K1">
+				<input name="postalCode" type="text" placeholder="K1K 1K1">
 				<label>Phone:</label>
 				<input name="phone" type="tel" placeholder="123-123-1234">
 			</div>
 			<div>
 				<label>Share Size:</label>
-				<input type="radio">
+				<input name="shareSize" value="half" type="radio">
 				<label>Half ($350)</label>
-				<input type="radio">
+				<input name="shareSize" value ="full" type="radio">
 				<label>Full ($600)</label>
 				<label>Pick Up Location:</label>
-				<select>
-					<option>Moo Shu</option>
-					<option>Orleans</option>
-					<option>RA Center</option>
-					<option>Kanata</option>
-					<option>Farm</option>
+				<select name="pickUpLocation">
+					<option value="MooShu">Moo Shu</option>
+					<option value="Orleans">Orleans</option>
+					<option value="RaCenter">RA Center</option>
+					<option value="Kanata">Kanata</option>
+					<option value="farm">Farm</option>
 				</select>
 			</div>
 			<div>
 				<label>Email:</label>
-				<input type="email" placeholder="yourname@email.com">
+				<input name="email" type="email" placeholder="yourname@email.com">
 			</div>
 			<div>
 				<label>Password:</label>
-				<input type="password" required minlength="5">
+				<input name="password" type="password" required minlength="5">
 				<label>Confirm Password:</label>
 				<input type="password" required minlength="5">
 			</div>
