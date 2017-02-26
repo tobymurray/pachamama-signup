@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -6,7 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: './csa-sign-up.component.html',
   styleUrls: ['./csa-sign-up.component.css']
 })
-export class CsaSignUpComponent implements OnInit {
+export class CsaSignUpComponent {
 
   provinces: String[] = [
     'Alberta',
@@ -51,9 +51,6 @@ export class CsaSignUpComponent implements OnInit {
         confirmPassword: ["", Validators.required]
       }, { validator: this.passwordMatchValidator })
     });
-  }
-
-  ngOnInit() {
   }
 
   onSubmit() {
