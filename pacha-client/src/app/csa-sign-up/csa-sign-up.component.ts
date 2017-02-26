@@ -29,7 +29,7 @@ export class CsaSignUpComponent {
     "Orleans",
     "RA Center",
     "Kanata",
-    "Pachamama Farm!"    
+    "Pachamama Farm!"
   ]
 
   form: FormGroup;
