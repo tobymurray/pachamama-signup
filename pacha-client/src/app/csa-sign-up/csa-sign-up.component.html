@@ -15,7 +15,7 @@
     <label>City:</label>
     <input name="city" type="text" value="Ottawa" formControlName="city">
     <label>Province:</label>
-    <select>
+    <select formControlName="province">
       <option *ngFor="let province of provinces">{{province}}</option>
 		</select>
   </div>

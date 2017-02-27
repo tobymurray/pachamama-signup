@@ -48,6 +48,7 @@ export class CsaSignUpComponent {
       "addressTwo": '',
       "city": ["", Validators.required],
       "postalCode": ["", Validators.required],
+      "province": ["", Validators.required],
       "phone": ["", Validators.required],
       "email": ["", Validators.required],
       "shareSize": ["", Validators.required],
