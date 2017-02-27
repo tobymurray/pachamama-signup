@@ -61,14 +61,32 @@ export class CsaSignUpComponent {
   }
 
   onSubmit() {
-    console.log("Form submitted");
-    console.log(this.form.value);
-    this.http.post('api/submit/', this.form.value)
+    let form = this.form.value;
+    let submission = {
+      firstName: form.firstName,
+      lastName: form.lastName,
+      addressOne: form.addressOne,
+      addressTwo: form.addressTwo,
+      city: form.city,
+      province: form.province,
+      country: form.country || 'Canada',
+      postalCode: form.postalCode,
+      phone: form.phone,
+      email: form.email,
+      shareSize: form.shareSize,
+      pickUpLocation: form.pickUpLocation,
+      password: form.passwords.password
+    }
+
+    this.http.post('submit/', submission)
       .map(response => response.json())
       .subscribe(
-      next => this.router.navigate(["/thanks"]),
-      error => console.error(error),
-    );
+      next => {
+        this.router.navigate(["/thanks"]);
+        console.log(next);
+      },
+      error => console.error(error)
+      );
   }
 
   passwordMatchValidator(group: FormGroup) {
