@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Headers, Http, Response } from '@angular/http';
+import { Observable } from 'rxjs/Rx';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-csa-sign-up',
@@ -34,7 +40,7 @@ export class CsaSignUpComponent {
 
   form: FormGroup;
 
-  constructor(formBuilder: FormBuilder) {
+  constructor(formBuilder: FormBuilder, private http: Http, private router: Router) {
     this.form = formBuilder.group({
       "firstName": ["", Validators.required],
       "lastName": ["", Validators.required],
@@ -54,7 +60,14 @@ export class CsaSignUpComponent {
   }
 
   onSubmit() {
+    console.log("Form submitted");
     console.log(this.form.value);
+    this.http.post('api/submit/', this.form.value)
+      .map(response => response.json())
+      .subscribe(
+      next => this.router.navigate(["/thanks"]),
+      error => console.error(error),
+    );
   }
 
   passwordMatchValidator(group: FormGroup) {
