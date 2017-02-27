@@ -14,9 +14,3 @@ exports.up = (knex, Promise) => {
 exports.down = (knex, Promise) => {
   return knex.schema.dropTable('users');
 };
-
-
-// {
-//   shareSize: 'halfShare',
-//   pickUpLocation: 'Moo Shu Ice Cream',
-// }
