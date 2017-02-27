@@ -1,0 +1,18 @@
+## 0.0.3
+Basic client
+  - Angular-ize form
+  - Hook up form to submit to server
+  - Refactor server response to return JSON
+  
+## 0.0.2
+Add styles
+  - Add Bootstrap
+  - Add Google font
+  - Add targets to navigation links
+
+## 0.0.1
+Initial deployment
+  - No styling in place
+  - No fonts
+  - No navigation links
+  - Nothing works
