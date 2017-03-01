@@ -5,6 +5,8 @@ exports.up = (knex, Promise) => {
     table.foreign('user_id').references('user_id').inTable('users');
     table.integer('subscription_type_id').unsigned();
     table.foreign('subscription_type_id').references('subscription_type_id').inTable('subscription_types');
+    table.integer('pick_up_location_id').unsigned();
+    table.foreign('pick_up_location_id').references('pick_up_location_id').inTable('pick_up_locations');
     table.date('start_date').notNullable();
     table.date('end_date').notNullable();
 
