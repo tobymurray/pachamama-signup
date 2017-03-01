@@ -16,14 +16,3 @@ exports.up = function(knex, Promise) {
 exports.down = (knex, Promise) => {
   return knex.schema.withSchema(process.env.DB_SCHEMA_NAME).dropTable('addresses');
 };
-
-
-// AddressId
-// Line1
-// Line2
-// Line3
-// City
-// ZipOrPostcode
-// StateProvinceCounty
-// CountryId
-// OtherAddressDetails
