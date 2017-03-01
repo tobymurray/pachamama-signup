@@ -62,6 +62,10 @@ exports.seed = function (knex, Promise) {
           created_at: now,
           updated_at: now
         },
-      ]);
+      ]).max('address_id').then(max => {
+        return knex.raw('ALTER SEQUENCE addresses_address_id_seq START WITH ' + (max.rowCount + 1));
+      }).then(() => {
+        return knex.raw('ALTER SEQUENCE addresses_address_id_seq RESTART');
+      });
     });
 };
