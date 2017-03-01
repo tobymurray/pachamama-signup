@@ -12,7 +12,8 @@
     "copy-dotenv": "cp .env dist/",
     "start-dev": "yarn run build && yarn run copy-dotenv && cd dist && yarn start",
     "package": "zip -r pachamama-server.zip dist",
-    "test": "echo 'no tests yet...'"
+    "test": "echo 'no tests yet...'",
+    "reset-database": "knex migrate:rollback && knex migrate:latest && knex seed:run"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
