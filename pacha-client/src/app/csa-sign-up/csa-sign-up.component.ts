@@ -78,7 +78,7 @@ export class CsaSignUpComponent {
       password: form.passwords.password
     }
 
-    this.http.post('submit/', submission)
+    this.http.post('api/submit/', submission)
       .map(response => response.json())
       .subscribe(
       next => {
