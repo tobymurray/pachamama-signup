@@ -1,3 +1,7 @@
+## 0.0.4
+Client-server integration
+  - Process form submission server-side and persist the data
+
 ## 0.0.3
 Basic client
   - Angular-ize form
