@@ -1,0 +1,14 @@
+#imageBanner {
+  padding-bottom: 1em;
+  text-align: center;
+}
+
+#form {
+  max-width: 70%;
+  padding: 1em 2em;
+  border-radius: 25px;
+}
+
+#csaInfo {
+  padding: 1em;
+}
