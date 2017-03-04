@@ -26,8 +26,8 @@
     </div>
     <div class="col-6 form-group">
       <label>Province:</label><br />
-      <select formControlName="province">
-      <option *ngFor="let province of provinces">{{province}}</option>
+      <select class="custom-select" formControlName="province">
+      <option *ngFor="let province of provinces" [selected]="province == defaultProvince">{{province}}</option>
 		  </select>
     </div>
   </div>
@@ -61,7 +61,7 @@
 
   <div class="form-group">
     <label for="pickUpLocation">Pick Up Location:</label>
-    <select class="form-control" id="pickUpLocation" formControlName="pickUpLocation">
+    <select class="form-control custom-select" id="pickUpLocation" formControlName="pickUpLocation">
       <option *ngFor="let location of pickUpLocations" [value]="location">{{location}}</option>
     </select>
   </div>

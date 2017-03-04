@@ -14,6 +14,8 @@ import { Router } from '@angular/router';
 })
 export class CsaSignUpComponent {
 
+  defaultProvince = 'Ontario';
+
   provinces: String[] = [
     'Alberta',
     'British Columbia',
@@ -23,7 +25,7 @@ export class CsaSignUpComponent {
     'Nova Scotia',
     'Nunavut',
     'Northwest Territories',
-    'Ontario',
+    this.defaultProvince,
     'Prince Edward Island',
     'Quebec',
     'Saskatchewan',
