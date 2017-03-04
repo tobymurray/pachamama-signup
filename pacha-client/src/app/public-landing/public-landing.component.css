@@ -3,11 +3,12 @@
   text-align: center;
 }
 
-#form {
+#signUpFormWrapper {
   max-width: 80%;
   min-width: 320px;
-  padding: 1% 2%;
   border-radius: 25px;
+  padding: 2em;
+  background-color: #ffffff;
 }
 
 #csaInfo {
