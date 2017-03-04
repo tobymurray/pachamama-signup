@@ -8,7 +8,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "prod": "rm -f client.zip && ng build --prod && zip -r client.zip dist"
   },
   "private": true,
   "dependencies": {
