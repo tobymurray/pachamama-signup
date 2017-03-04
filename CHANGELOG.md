@@ -1,3 +1,8 @@
+## 0.0.5
+Client refinements
+  - Add some styling so desktop looks nicer
+  - Rework for reactive design, enabling mobile view
+
 ## 0.0.4
 Client-server integration
   - Process form submission server-side and persist the data
