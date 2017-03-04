@@ -4,13 +4,13 @@
   font-family: "Dosis";
 }
 
-#mainPage {
-  background-color: #D7FAAB;
+body {
+  max-width: 100%;
 }
 
-#farmLogo {
-  border-radius: 25px;
-}
+#mainPage {
+  background-color: #D7FAAB;
+} 
 
 h3 {
   color: #006B3D;
