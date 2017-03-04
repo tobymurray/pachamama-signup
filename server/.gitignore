@@ -3,3 +3,6 @@ dist
 pachamama-server.zip
 
 \.env
+
+!public\error.html
+public\*
