@@ -11,6 +11,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { PublicLandingComponent } from './public-landing/public-landing.component';
 import { CsaSignUpComponent } from './csa-sign-up/csa-sign-up.component';
 import { SignUpThanksComponent } from './sign-up-thanks/sign-up-thanks.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { SignUpThanksComponent } from './sign-up-thanks/sign-up-thanks.component
     NavbarComponent,
     PublicLandingComponent,
     CsaSignUpComponent,
-    SignUpThanksComponent
+    SignUpThanksComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
