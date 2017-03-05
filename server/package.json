@@ -12,7 +12,7 @@
     "copy-dotenv": "cp .env dist/",
     "start-dev": "yarn run build && yarn run copy-dotenv && cd dist && yarn start",
     "package": "zip -r pachamama-server.zip dist",
-    "test": "echo 'no tests yet...'",
+    "test": "yarn run build && cd dist && node_modules/tape/bin/tape */**/*.tape.js",
     "reset-database": "knex migrate:rollback && knex migrate:latest && knex seed:run"
   },
   "dependencies": {
