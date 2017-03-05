@@ -12,6 +12,7 @@ import { PublicLandingComponent } from './public-landing/public-landing.componen
 import { CsaSignUpComponent } from './csa-sign-up/csa-sign-up.component';
 import { SignUpThanksComponent } from './sign-up-thanks/sign-up-thanks.component';
 import { FooterComponent } from './footer/footer.component';
+import { SignInComponent } from './sign-in/sign-in.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FooterComponent } from './footer/footer.component';
     PublicLandingComponent,
     CsaSignUpComponent,
     SignUpThanksComponent,
-    FooterComponent
+    FooterComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule,
