@@ -13,6 +13,7 @@ import { CsaSignUpComponent } from './csa-sign-up/csa-sign-up.component';
 import { SignUpThanksComponent } from './sign-up-thanks/sign-up-thanks.component';
 import { FooterComponent } from './footer/footer.component';
 import { SignInComponent } from './sign-in/sign-in.component';
+import { UserService } from './shared/user.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,9 @@ import { SignInComponent } from './sign-in/sign-in.component';
     ReactiveFormsModule,
     NgbModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
