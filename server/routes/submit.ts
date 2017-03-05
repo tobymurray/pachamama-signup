@@ -4,7 +4,7 @@ const submit = express.Router();
 import { User } from '../models/users/user';
 import { Address } from '../models/address';
 import { Subscription } from '../models/subscription';
-import { SubscriptionType } from '../models/subscription_type';
+import { SubscriptionType } from '../models/subscription_types/subscription_type';
 import { PickUpLocation } from '../models/pick_up_location';
 
 submit.post('/', function (req, res, next) {
