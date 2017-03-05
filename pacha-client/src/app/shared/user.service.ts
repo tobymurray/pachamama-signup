@@ -1,10 +1,8 @@
-
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import { LocalStorage } from 'node-localstorage';
 
 @Injectable()
 export class UserService {
@@ -13,11 +11,9 @@ export class UserService {
   private HEADERS = new Headers({ 'Content-Type': 'application/json' });
   private authToken: string = 'auth_token';
   private signedIn: boolean = false;
-  private localStorage: LocalStorage;
 
   constructor(private http: Http) {
-    this.localStorage = new LocalStorage();
-    this.signedIn = !!this.localStorage.getItem(this.authToken);
+    this.signedIn = !!localStorage.getItem(this.authToken);
   }
 
   signIn(username: string, password: string) {
@@ -68,7 +64,7 @@ export class UserService {
       return { error: response.error };
     }
 
-    this.localStorage.setItem(this.authToken, 'token');
+    localStorage.setItem(this.authToken, 'token');
     this.signedIn = true;
     return { error: null }
   }
@@ -83,7 +79,7 @@ export class UserService {
 
   _signUserOut(response) {
     console.log(response);
-    this.localStorage.removeItem(this.authToken);
+    localStorage.removeItem(this.authToken);
     this.signedIn = false;
   }
 }
