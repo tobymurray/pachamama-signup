@@ -75,8 +75,6 @@ export class User {
         let userData = users[0];
         resolve(new User(userData.first_name, userData.last_name, userData.phone_number, userData.email, userData.password));
       })
-    }).catch(error => {
-      console.error(error);
     });
   };
 }
