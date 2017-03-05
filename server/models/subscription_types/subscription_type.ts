@@ -3,7 +3,11 @@ export class SubscriptionType {
   public static readonly FULL_SHARE = "Full share";
   public static readonly HALF_SHARE = "Half share";
 
-  constructor(private description: string, private _id?: number) { }
+  constructor(private _description: string, private _id?: number) { }
+
+  public get description(): string {
+    return this._description;
+  }
 
   public get id(): number {
     return this._id;
