@@ -6,11 +6,12 @@
 
 body {
   max-width: 100%;
+  margin-bottom: 50px;
 }
 
 #mainPage {
   background-color: #D7FAAB;
-} 
+}
 
 h3 {
   color: #006B3D;
