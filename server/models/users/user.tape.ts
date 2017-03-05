@@ -1,9 +1,9 @@
 const test = require('blue-tape');
 const mockKnex = require('mock-knex');
 
-import { CryptoUtils } from '../utils/cryptoUtils';
+import { CryptoUtils } from '../../utils/cryptoUtils';
 import { User } from '../users/user';
-import { Database } from '../config/db';
+import { Database } from '../../config/db';
 (<any>global).knex = mockKnex.mock(Database.get());
 
 

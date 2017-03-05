@@ -1,5 +1,5 @@
-import { CryptoUtils } from '../utils/cryptoUtils';
-import { Address } from '../models/address';
+import { CryptoUtils } from '../../utils/cryptoUtils';
+import { Address } from '../address';
 
 export class User {
   constructor(private _firstName: string, private _lastName: string,

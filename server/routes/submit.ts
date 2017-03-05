@@ -1,7 +1,7 @@
 import express from 'express';
 const submit = express.Router();
 
-import { User } from '../users/user';
+import { User } from '../models/users/user';
 import { Address } from '../models/address';
 import { Subscription } from '../models/subscription';
 import { SubscriptionType } from '../models/subscription_type';
