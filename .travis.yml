@@ -28,4 +28,5 @@ before_script:
   - ng build
 
 script: 
-  - karma start karma.conf.js --single-run
+  - cd ../pacha-client && yarn test
+  - cd ../server && yarn test
