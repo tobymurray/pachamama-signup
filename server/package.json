@@ -42,9 +42,9 @@
     "babel-cli": "^6.23.0",
     "babel-preset-es2015": "^6.22.0",
     "babel-preset-stage-2": "^6.22.0",
+    "blue-tape": "^1.0.0",
     "copyfiles": "^1.2.0",
     "mock-knex": "^0.3.7",
-    "tape": "^4.6.3",
     "typescript": "^2.1.6"
   }
 }
