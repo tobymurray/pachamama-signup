@@ -6,6 +6,26 @@ export class User {
     private _phoneNumber: string, private _email: string, private _password: string, private _id?: number) {
   }
 
+  get firstName(): string {
+    return this._firstName;
+  }
+
+  get lastName(): string {
+    return this._lastName;
+  }
+
+  get phoneNumber(): string {
+    return this._phoneNumber;
+  }
+
+  get email(): string {
+    return this._email;
+  }
+
+  get password(): string {
+    return this._password;
+  }
+
   get id(): number {
     return this._id;
   }
