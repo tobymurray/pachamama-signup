@@ -2,8 +2,8 @@ import { CryptoUtils } from '../utils/cryptoUtils';
 import { Address } from '../models/address';
 
 export class User {
-  constructor(private first_name: string, private last_name: string,
-    private phone_number: string, private email: string, private password: string, private _id?: number) {
+  constructor(private _firstName: string, private _lastName: string,
+    private _phoneNumber: string, private _email: string, private _password: string, private _id?: number) {
   }
 
   get id(): number {
@@ -18,16 +18,16 @@ export class User {
       });
   }
 
-  static add(first_name: string, last_name: string, phone_number: string,
+  static add(firstName: string, lastName: string, phoneNumber: string,
     email: string, plaintextPassword: string) {
     return CryptoUtils.encryptPassword(plaintextPassword)
       .then(encryptedPassword => {
         let now = new Date();
         return (<any>global).knex('users').insert(
           {
-            first_name: first_name,
-            last_name: last_name,
-            phone_number: phone_number,
+            first_name: firstName,
+            last_name: lastName,
+            phone_number: phoneNumber,
             email: email,
             password: encryptedPassword,
             created_at: now,
