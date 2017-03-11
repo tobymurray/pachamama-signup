@@ -11,7 +11,7 @@ import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 
 import { HttpError } from './models/http_error'
-import { submit } from './routes/submit';
+import { router as submitRouter } from './routes/submit';
 
 import { Database } from './config/db';
 (<any>global).knex = Database.get();
@@ -31,7 +31,7 @@ export default class App {
     this.app.use(cookieParser());
     this.app.use(express.static(path.join(__dirname, 'public')));
 
-    this.app.use('/submit', submit);
+    this.app.use('/submit', submitRouter);
 
     // catch 404 and forward to error handler
     this.app.use(function (req, res, next) {
