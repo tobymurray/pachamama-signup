@@ -13,7 +13,7 @@
     "start-dev": "yarn run build && yarn run copy-dotenv && cd dist && yarn start",
     "package": "zip -r pachamama-server.zip dist",
     "test": "yarn run build && cd dist && node_modules/tape/bin/tape */**/*.tape.js",
-    "reset-database": "knex migrate:rollback && knex migrate:latest && knex seed:run"
+    "reset-database": "knex migrate:rollback --knexfile database/knexfile.js && knex migrate:latest --knexfile database/knexfile.js && knex seed:run --knexfile database/knexfile.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
