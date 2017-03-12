@@ -8,15 +8,16 @@ cache: yarn
 env:
   - NODE_ENV=test
 
+services:
+  - postgresql
+
 addons:
   apt:
     sources:
       - google-chrome
-      - travis-ci/sqlite3
     packages:
       - google-chrome-stable
       - google-chrome-beta
-      - sqlite3
 
 before_install:
   - export CHROME_BIN=chromium-browser
@@ -24,6 +25,8 @@ before_install:
   - sh -e /etc/init.d/xvfb start
 
 before_script:
+  - yarn global add web-app-db
+  - web-app-db
   - yarn global add @angular/cli
   - yarn global add karma
   - cd server

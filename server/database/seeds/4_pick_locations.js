@@ -34,16 +34,10 @@ exports.seed = function (knex, Promise) {
           created_at: now,
           updated_at: now
         },
-      ]).then(() => {
-        if (process.env.NODE_ENV === 'test') {
-          return;
-        }
-        return knex(TABLE).max('pick_up_location_id')
-          .then(max => {
-            knex.raw('ALTER SEQUENCE pick_up_locations_pick_up_location_id_seq START WITH ' + (max.rowCount + 1));
-          }).then(() => {
-            return knex.raw('ALTER SEQUENCE pick_up_locations_pick_up_location_id_seq RESTART');
-          });
+      ]).max('pick_up_location_id').then(max => {
+        return knex.raw('ALTER SEQUENCE pick_up_locations_pick_up_location_id_seq START WITH ' + (max.rowCount + 1));
+      }).then(() => {
+        return knex.raw('ALTER SEQUENCE pick_up_locations_pick_up_location_id_seq RESTART');
       });
     });
 };
