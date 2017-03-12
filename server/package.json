@@ -7,7 +7,7 @@
     "clean": "rm -rf build && rm -rf dist",
     "tsc": "node ./node_modules/.bin/tsc",
     "babel": "node ./node_modules/.bin/babel --presets es2015 build --out-dir dist --source-maps",
-    "copy-files": "cp package.json dist/ && cp knexfile.js dist/ && cp -r public dist/ && cp -r node_modules dist/ && cp -r migrations dist/ && cp -r seeds dist/",
+    "copy-files": "cp package.json dist/ && cp database/knexfile.js dist/database/knexfile.js && cp -r public dist/ && cp -r node_modules dist/ && cp -r migrations dist/ && cp -r seeds dist/",
     "build": "yarn run clean && yarn run tsc && yarn run babel && yarn run copy-files",
     "copy-dotenv": "cp .env dist/",
     "start-dev": "yarn run build && yarn run copy-dotenv && cd dist && yarn start",

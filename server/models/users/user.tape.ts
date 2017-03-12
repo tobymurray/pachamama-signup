@@ -3,7 +3,7 @@ const mockKnex = require('mock-knex');
 
 import { CryptoUtils } from '../../utils/cryptoUtils';
 import { User } from '../users/user';
-import { Database } from '../../config/db';
+import { Database } from '../../database/db_config';
 if (!(<any>global).knex) {
   (<any>global).knex = mockKnex.mock(Database.get());
 }
