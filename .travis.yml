@@ -5,12 +5,14 @@ node_js:
   - "node"
 
 addons:
-apt:
-  sources:
-    - google-chrome
-  packages:
-    - google-chrome-stable
-    - google-chrome-beta
+  apt:
+    sources:
+      - google-chrome
+      - travis-ci/sqlite3
+    packages:
+      - google-chrome-stable
+      - google-chrome-beta
+      - sqlite3
 
 before_install:
   - export CHROME_BIN=chromium-browser
