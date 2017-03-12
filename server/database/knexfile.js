@@ -28,8 +28,8 @@ module.exports = {
   },
 
   production: {
-    searchPath: process.env.DB_SCHEMA_NAME || process.env.DB_NAME,
     client: 'postgres',
+    searchPath: process.env.DB_SCHEMA_NAME || process.env.DB_NAME,
     connection: {
       host: process.env.DB_HOST,
       port: process.env.DB_PORT,
