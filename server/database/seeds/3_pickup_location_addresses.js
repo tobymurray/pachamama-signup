@@ -68,7 +68,7 @@ exports.seed = function (knex, Promise) {
         if (process.env.NODE_ENV === 'test') {
           return;
         }
-        return max('address_id')
+        return knex(TABLE).max('address_id')
           .then(max => {
             knex.raw('ALTER SEQUENCE addresses_address_id_seq START WITH ' + (max.rowCount + 1));
           }).then(() => {
