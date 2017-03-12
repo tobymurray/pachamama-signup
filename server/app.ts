@@ -13,7 +13,7 @@ import bodyParser from 'body-parser';
 import { HttpError } from './models/http_error'
 import { router as submitRouter } from './routes/submit';
 
-import { Database } from './config/db';
+import { Database } from './database/db_config';
 (<any>global).knex = Database.get();
 
 import { KnexUtils } from './utils/knexUtils';

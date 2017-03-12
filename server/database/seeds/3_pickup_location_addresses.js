@@ -1,8 +1,10 @@
+const TABLE = 'addresses';
+
 exports.seed = function (knex, Promise) {
-  return knex('addresses').del()
+  return knex(TABLE).del()
     .then(function () {
       let now = new Date();
-      return knex('addresses').insert([{
+      return knex(TABLE).insert([{
           address_id: 1,
           line_1: '477 Bank St',
           line_2: '',
@@ -62,10 +64,16 @@ exports.seed = function (knex, Promise) {
           created_at: now,
           updated_at: now
         },
-      ]).max('address_id').then(max => {
-        return knex.raw('ALTER SEQUENCE addresses_address_id_seq START WITH ' + (max.rowCount + 1));
-      }).then(() => {
-        return knex.raw('ALTER SEQUENCE addresses_address_id_seq RESTART');
+      ]).then(() => {
+        if (process.env.NODE_ENV === 'test') {
+          return;
+        }
+        return knex(TABLE).max('address_id')
+          .then(max => {
+            knex.raw('ALTER SEQUENCE addresses_address_id_seq START WITH ' + (max.rowCount + 1));
+          }).then(() => {
+            return knex.raw('ALTER SEQUENCE addresses_address_id_seq RESTART');
+          });
       });
     });
 };

@@ -6,3 +6,5 @@ pachamama-server.zip
 
 !public\error.html
 public\*
+
+*.sqlite

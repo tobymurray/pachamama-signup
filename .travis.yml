@@ -3,14 +3,20 @@ dist: trusty
 language: node_js
 node_js: 
   - "node"
+cache: yarn
+
+env:
+  - NODE_ENV=test
 
 addons:
-apt:
-  sources:
-    - google-chrome
-  packages:
-    - google-chrome-stable
-    - google-chrome-beta
+  apt:
+    sources:
+      - google-chrome
+      - travis-ci/sqlite3
+    packages:
+      - google-chrome-stable
+      - google-chrome-beta
+      - sqlite3
 
 before_install:
   - export CHROME_BIN=chromium-browser
