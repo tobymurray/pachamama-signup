@@ -24,7 +24,8 @@ module.exports = {
     client: 'sqlite3',
     connection: {
       filename: "./pachamama_test.sqlite"
-    }
+    },
+    useNullAsDefault: true
   },
 
   production: {
