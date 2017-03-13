@@ -7,6 +7,20 @@ export class Subscription {
     return this._id;
   }
 
+  static getForUser(userId: number) {
+    return (<any>global).knex('subscriptions').where({
+      user_id: userId
+    }).then(subscriptions => {
+      if (subscriptions.length === 0) {
+        return [];
+      }
+
+      return subscriptions.map(subscription => {
+        return new Subscription(subscription.user_id, subscription.subscription_type_id, subscription.start_date, subscription.end_date, subscription.subscription_id);
+      });
+    });
+  }
+
   static add(userId: number, subscriptionTypeId: number, pickUpLocationId: number, startDate: Date, endDate: Date): Promise<Subscription> {
     let now = new Date();
     return (<any>global).knex('subscriptions').insert(
