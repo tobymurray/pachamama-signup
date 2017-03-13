@@ -29,4 +29,25 @@ export class Address {
           address.city, address.postal_code, address.province, address.country, address.address_id);
       });
   }
+
+  static getForUser(userId: number): [Promise<Address>] {
+    return (<any>global).knex('customers_addresses').where({
+      user_id: userId
+    }).then(customerAddresses => {
+      if (customerAddresses.length === 0) {
+        return null;
+      }
+
+      let addressIds = customerAddresses.map(customerAddress => { return customerAddress.address_id });
+
+      return (<any>global).knex('addresses')
+        .whereIn('address_id', addressIds)
+        .then(dbAddresses => {
+          return dbAddresses.map(address => {
+            return new Address(address.line_1, address.line_2, address.line_3,
+              address.city, address.postal_code, address.province, address.country, address.address_id);
+          });
+        });
+    });
+  }
 }

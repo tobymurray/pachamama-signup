@@ -1,10 +1,32 @@
 export class Subscription {
-  constructor(private userId: number, private subscriptionTypeId: number,
-    private pickUpLocationId: number, private startDate: Date,
+  constructor(private userId: number, private _subscriptionTypeId: number,
+    private _pickUpLocationId: number, private startDate: Date,
     private endDate: Date, private _id?: number) { }
 
   get id(): number {
     return this._id;
+  }
+
+  get pickUpLocationId(): number {
+    return this._pickUpLocationId;
+  }
+
+  get subscriptionTypeId(): number {
+    return this._subscriptionTypeId;
+  }
+
+  static getForUser(userId: number): [Promise<Subscription>] {
+    return (<any>global).knex('subscriptions').where({
+      user_id: userId
+    }).then(subscriptions => {
+      if (subscriptions.length === 0) {
+        return [];
+      }
+
+      return subscriptions.map(subscription => {
+        return new Subscription(subscription.user_id, subscription.subscription_type_id, subscription.pick_up_location_id, subscription.start_date, subscription.end_date, subscription.subscription_id);
+      });
+    });
   }
 
   static add(userId: number, subscriptionTypeId: number, pickUpLocationId: number, startDate: Date, endDate: Date): Promise<Subscription> {
@@ -20,7 +42,7 @@ export class Subscription {
     ).returning('*')
       .then(subscriptions => {
         let subscription = subscriptions[0];
-        return new Subscription(subscription.user_id, subscription.subscription_type_id, subscription.start_date, subscription.end_date, subscription.subscription_id);
+        return new Subscription(subscription.user_id, subscription.subscription_type_id, subscription.pick_up_location_id, subscription.start_date, subscription.end_date, subscription.subscription_id);
       });
   }
 }

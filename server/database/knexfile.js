@@ -21,11 +21,19 @@ module.exports = {
   },
 
   test: {
-    client: 'sqlite3',
+    client: 'postgres',
+    searchPath: process.env.DB_SCHEMA_NAME || process.env.DB_NAME,
     connection: {
-      filename: "./pachamama_test.sqlite"
+      host: process.env.DB_HOST,
+      port: process.env.DB_PORT,
+      database: process.env.DB_NAME + "_test",
+      user: process.env.DB_ADMIN,
+      password: process.env.DB_ADMIN_PASSWORD
     },
-    useNullAsDefault: true
+    pool: {
+      max: process.env.DB_NUM_MAX_CLIENTS,
+      idleTimeoutMillis: process.env.DB_IDLE_TIMEOUT_MILLIS,
+    }
   },
 
   production: {
