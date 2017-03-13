@@ -30,7 +30,7 @@ export class Address {
       });
   }
 
-  static getForUser(userId: number) {
+  static getForUser(userId: number): [Promise<Address>] {
     return (<any>global).knex('customers_addresses').where({
       user_id: userId
     }).then(customerAddresses => {
