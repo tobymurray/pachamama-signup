@@ -1,13 +1,17 @@
 export class Subscription {
   constructor(private userId: number, private subscriptionTypeId: number,
-    private pickUpLocationId: number, private startDate: Date,
+    private _pickUpLocationId: number, private startDate: Date,
     private endDate: Date, private _id?: number) { }
 
   get id(): number {
     return this._id;
   }
 
-  static getForUser(userId: number) {
+  get pickUpLocationId(): number {
+    return this._pickUpLocationId;
+  }
+
+  static getForUser(userId: number): [Promise<Subscription>] {
     return (<any>global).knex('subscriptions').where({
       user_id: userId
     }).then(subscriptions => {
@@ -16,7 +20,7 @@ export class Subscription {
       }
 
       return subscriptions.map(subscription => {
-        return new Subscription(subscription.user_id, subscription.subscription_type_id, subscription.start_date, subscription.end_date, subscription.subscription_id);
+        return new Subscription(subscription.user_id, subscription.subscription_type_id, subscription.pick_up_location_id, subscription.start_date, subscription.end_date, subscription.subscription_id);
       });
     });
   }
@@ -34,7 +38,7 @@ export class Subscription {
     ).returning('*')
       .then(subscriptions => {
         let subscription = subscriptions[0];
-        return new Subscription(subscription.user_id, subscription.subscription_type_id, subscription.start_date, subscription.end_date, subscription.subscription_id);
+        return new Subscription(subscription.user_id, subscription.subscription_type_id, subscription.pick_up_location_id, subscription.start_date, subscription.end_date, subscription.subscription_id);
       });
   }
 }
