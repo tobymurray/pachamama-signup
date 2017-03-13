@@ -1,5 +1,5 @@
 export class Subscription {
-  constructor(private userId: number, private subscriptionTypeId: number,
+  constructor(private userId: number, private _subscriptionTypeId: number,
     private _pickUpLocationId: number, private startDate: Date,
     private endDate: Date, private _id?: number) { }
 
@@ -9,6 +9,10 @@ export class Subscription {
 
   get pickUpLocationId(): number {
     return this._pickUpLocationId;
+  }
+
+  get subscriptionTypeId(): number {
+    return this._subscriptionTypeId;
   }
 
   static getForUser(userId: number): [Promise<Subscription>] {
