@@ -1,3 +1,5 @@
+import { SignInForm } from './models/sign_in_form/sign_in_form';
+import { User } from './models/users/user';
 "use strict";
 
 import * as dotenv from 'dotenv';
@@ -12,6 +14,7 @@ import bodyParser from 'body-parser';
 import session from 'express-session';
 const KnexSessionStore = require('connect-session-knex')(session);
 import passport from 'passport';
+const LocalStrategy = require('passport-local').Strategy;
 
 import { HttpError } from './models/http_error'
 import { router as submitRouter } from './routes/submit';
@@ -24,7 +27,6 @@ import { KnexUtils } from './utils/knexUtils';
 KnexUtils.logVersion()
 
 console.log("Starting in " + process.env.NODE_ENV + " environment");
-
 
 export default class App {
   public app: express.Application;
@@ -52,6 +54,31 @@ export default class App {
     this.app.use(express.static(path.join(__dirname, 'public')));
     this.app.use(passport.initialize());
     this.app.use(passport.session());
+
+    passport.serializeUser(function (user: User, callback) {
+      callback(null, user.id);
+    });
+
+    passport.deserializeUser(function (id: number, callback) {
+      User.getById(id).then(user => {
+        callback(null, user);
+      }).catch( error => {
+        callback(error);
+      });
+    });
+
+
+    passport.use(new LocalStrategy(
+      function (username, password, done) {
+        new SignInForm().submit({email: username, password: password})
+        .then(user => {
+          return done(null, user);
+        })
+        .catch(error => {
+          return done(null, false, { message: error });
+        });
+      }
+    ));
 
     this.app.use('/submit', submitRouter);
     this.app.use('/sign-in', signInRouter);
