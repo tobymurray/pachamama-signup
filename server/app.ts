@@ -38,7 +38,9 @@ export default class App {
 
     this.app.use(session({
       secret: process.env.SESSION_SECRET,
-      store: store
+      store: store,
+      resave: false,
+      saveUninitialized: true
     }));
     this.app.use(logger('dev'));
     this.app.use(bodyParser.json());
