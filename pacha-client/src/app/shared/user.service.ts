@@ -18,7 +18,7 @@ export class UserService {
 
   signIn(email: string, password: string) {
     return new Promise((resolve, reject) => {
-      this.http.post('/sign-in', { email: email, password: password }, { headers: this.HEADERS })
+      this.http.post('/api/sign-in', { email: email, password: password }, { headers: this.HEADERS })
         .map(response => response.json())
         .subscribe(
         next => resolve(this._signUserIn(next)),
