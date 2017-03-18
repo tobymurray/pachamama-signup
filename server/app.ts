@@ -20,6 +20,8 @@ import { Database } from './database/db_config';
 import { KnexUtils } from './utils/knexUtils';
 KnexUtils.logVersion()
 
+console.log("Starting in " + process.env.NODE_ENV + " environment");
+
 export default class App {
   public app: express.Application;
 
