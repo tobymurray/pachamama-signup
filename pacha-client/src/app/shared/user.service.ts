@@ -16,9 +16,9 @@ export class UserService {
     this.signedIn = !!localStorage.getItem(this.authToken);
   }
 
-  signIn(username: string, password: string) {
+  signIn(email: string, password: string) {
     return new Promise((resolve, reject) => {
-      this.http.post('/api/sign-in', { username: username, password: password }, { headers: this.HEADERS })
+      this.http.post('/sign-in', { email: email, password: password }, { headers: this.HEADERS })
         .map(response => response.json())
         .subscribe(
         next => resolve(this._signUserIn(next)),
@@ -60,7 +60,7 @@ export class UserService {
 
   _signUserIn(response) {
     if (response.error) {
-      console.log("There was an error: " + response.error);
+      console.log("There was an error: ", response.error);
       return { error: response.error };
     }
 
@@ -71,7 +71,7 @@ export class UserService {
 
   _signUp(response, email, password) {
     if (response.error) {
-      console.log("There was an error: " + response.error);
+      console.log("There was an error: ", response.error);
       return { error: response.error };
     }
     return { error: null };
