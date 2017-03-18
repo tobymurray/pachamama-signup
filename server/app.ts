@@ -11,6 +11,7 @@ import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import session from 'express-session';
 const KnexSessionStore = require('connect-session-knex')(session);
+import passport from 'passport';
 
 import { HttpError } from './models/http_error'
 import { router as submitRouter } from './routes/submit';
@@ -44,6 +45,8 @@ export default class App {
     this.app.use(bodyParser.urlencoded({ extended: false }));
     this.app.use(cookieParser());
     this.app.use(express.static(path.join(__dirname, 'public')));
+    this.app.use(passport.initialize());
+    this.app.use(passport.session());
 
     this.app.use('/submit', submitRouter);
     this.app.use('/sign-in', signInRouter);
