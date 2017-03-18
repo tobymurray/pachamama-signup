@@ -65,7 +65,7 @@ export class User {
     }).then(users => {
       return new Promise(function (resolve, reject) {
         if (users.length === 0) {
-          return resolve(null);
+          return reject("Found no user with email " + email);
         }
 
         if (users.length > 1) {

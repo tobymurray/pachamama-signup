@@ -10,10 +10,11 @@
     "copy-files": "cp package.json dist/ && cp database/knexfile.js dist/database/knexfile.js && cp -r public dist/ && cp -r node_modules dist/ && cp -r database/migrations dist/database/ && cp -r database/seeds dist/database/",
     "build": "yarn run clean && yarn run tsc && yarn run babel && yarn run copy-files",
     "copy-dotenv": "cp .env dist/",
-    "start-dev": "yarn run build && yarn run copy-dotenv && cd dist && yarn start",
+    "start-dev": "NODE_ENV=development yarn run build && yarn run copy-dotenv && cd dist && NODE_ENV=development yarn start",
     "package": "zip -r pachamama-server.zip dist",
     "test": "yarn run build && yarn run copy-dotenv && cd dist && NODE_ENV=test yarn run reset-database && cd database && NODE_ENV=test ../node_modules/mocha/bin/mocha ../**/*.mocha.js",
-    "reset-database": "NODE_ENV=test knex migrate:rollback --knexfile database/knexfile.js && NODE_ENV=test knex migrate:latest --knexfile database/knexfile.js && NODE_ENV=test knex seed:run --knexfile database/knexfile.js"
+    "reset-database-test": "NODE_ENV=test knex migrate:rollback --knexfile database/knexfile.js && NODE_ENV=test knex migrate:latest --knexfile database/knexfile.js && NODE_ENV=test knex seed:run --knexfile database/knexfile.js",
+    "reset-database-dev": "NODE_ENV=development knex migrate:rollback --knexfile database/knexfile.js && NODE_ENV=development knex migrate:latest --knexfile database/knexfile.js && NODE_ENV=development knex seed:run --knexfile database/knexfile.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
