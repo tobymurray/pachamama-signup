@@ -115,9 +115,9 @@
   dependencies:
     tsickle "^0.2"
 
-"@ng-bootstrap/ng-bootstrap@^1.0.0-alpha.20":
-  version "1.0.0-alpha.20"
-  resolved "https://registry.yarnpkg.com/@ng-bootstrap/ng-bootstrap/-/ng-bootstrap-1.0.0-alpha.20.tgz#db353971e4818210e753019b5ddbabad1e603a61"
+"@ng-bootstrap/ng-bootstrap@^1.0.0-alpha.21":
+  version "1.0.0-alpha.21"
+  resolved "https://registry.yarnpkg.com/@ng-bootstrap/ng-bootstrap/-/ng-bootstrap-1.0.0-alpha.21.tgz#9ac0ddcd81364b427b0997c7c11218d6a6dae371"
 
 "@ngtools/json-schema@1.0.5":
   version "1.0.5"
@@ -140,9 +140,9 @@
   version "6.0.64"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.64.tgz#cdc901411f6301e1437dfed23bc68f54442e4dc8"
 
-"@types/node@^7.0.5":
-  version "7.0.5"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-7.0.5.tgz#96a0f0a618b7b606f1ec547403c00650210bfbb7"
+"@types/node@^7.0.8":
+  version "7.0.8"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-7.0.8.tgz#25e4dd804b630c916ae671233e6d71f6ce18124a"
 
 "@types/q@^0.0.32":
   version "0.0.32"
