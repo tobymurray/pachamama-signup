@@ -12,6 +12,7 @@ import bodyParser from 'body-parser';
 
 import { HttpError } from './models/http_error'
 import { router as submitRouter } from './routes/submit';
+import { router as signInRouter } from './routes/sign_in';
 
 import { Database } from './database/db_config';
 (<any>global).knex = Database.get();
@@ -32,6 +33,7 @@ export default class App {
     this.app.use(express.static(path.join(__dirname, 'public')));
 
     this.app.use('/submit', submitRouter);
+    this.app.use('/sign-in', signInRouter);
 
     // catch 404 and forward to error handler
     this.app.use(function (req, res, next) {
