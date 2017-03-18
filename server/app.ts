@@ -32,6 +32,8 @@ export default class App {
   constructor() {
     const store = new KnexSessionStore({
       knex: (<any>global).knex,
+      tablename: 'sessions',
+      sidfieldname: 'session_id'
     });
 
     this.app = express();
