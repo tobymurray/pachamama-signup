@@ -1,0 +1,22 @@
+export interface UserSubscriptionData {
+  first_name: string,
+  last_name: string,
+  phone_number: string,
+  email: string,
+  customer_line_1: string,
+  customer_line_2: string,
+  customer_line_3: string,
+  customer_city: string,
+  customer_postal_code: string,
+  customer_province: string,
+  customer_country: string,
+  subscription_type: string,
+  pick_up_location: string,
+  pick_up_line_1: string,
+  pick_up_line_2: string,
+  pick_up_line_3: string,
+  pick_up_city: string,
+  pick_up_postal_code: string,
+  pick_up_province: string,
+  pick_up_country: string
+}
