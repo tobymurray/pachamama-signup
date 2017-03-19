@@ -59,6 +59,25 @@ export class User {
       });
   }
 
+  static getById(id: number) {
+    return (<any>global).knex('users').where({
+      user_id: id
+    }).then(users => {
+      return new Promise(function (resolve, reject) {
+        if (users.length === 0) {
+          return reject("Found no user with id " + id);
+        }
+
+        if (users.length > 1) {
+          return reject("Found " + users.length + " users with id " + id);
+        }
+
+        let userData = users[0];
+        return resolve(new User(userData.first_name, userData.last_name, userData.phone_number, userData.email, userData.password, userData.user_id));
+      })
+    });
+  }
+
   static get(email: string) {
     return (<any>global).knex('users').where({
       email: email
@@ -76,5 +95,24 @@ export class User {
         return resolve(new User(userData.first_name, userData.last_name, userData.phone_number, userData.email, userData.password, userData.user_id));
       })
     });
+  }
+
+  static signIn(email: string, password: string) {
+    if (!email) return Promise.reject("Email cannot be empty");
+    if (!password) return Promise.reject("Password cannot be empty");
+
+    let trimmed_email = email.trim();
+    let trimmed_password = password.trim();
+    
+    if (!trimmed_email) return Promise.reject("Email cannot be empty");
+    if (!trimmed_password) return Promise.reject("Password cannot be empty");
+
+    return User.get(trimmed_email)
+      .then(user => {
+        return CryptoUtils.passwordMatches(trimmed_password, user.password)
+          .then(passwordMatches => {
+            return passwordMatches ? user : Promise.reject("Username or password was incorrect")
+          });
+      });
   }
 }
