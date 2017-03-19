@@ -73,8 +73,8 @@ export class User {
         }
 
         let userData = users[0];
-        resolve(new User(userData.first_name, userData.last_name, userData.phone_number, userData.email, userData.password, userData.user_id));
+        return resolve(new User(userData.first_name, userData.last_name, userData.phone_number, userData.email, userData.password, userData.user_id));
       })
     });
-  };
+  }
 }
