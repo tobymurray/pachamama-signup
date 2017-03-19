@@ -96,4 +96,23 @@ export class User {
       })
     });
   }
+
+  static signIn(email: string, password: string) {
+    if (!email) return Promise.reject("Email cannot be empty");
+    if (!password) return Promise.reject("Password cannot be empty");
+
+    let trimmed_email = email.trim();
+    let trimmed_password = password.trim();
+    
+    if (!trimmed_email) return Promise.reject("Email cannot be empty");
+    if (!trimmed_password) return Promise.reject("Password cannot be empty");
+
+    return User.get(trimmed_email)
+      .then(user => {
+        return CryptoUtils.passwordMatches(trimmed_password, user.password)
+          .then(passwordMatches => {
+            return passwordMatches ? user : Promise.reject("Username or password was incorrect")
+          });
+      });
+  }
 }
