@@ -40,7 +40,7 @@ export class UserService {
   }
 
   signOut() {
-    this.http.post('/api/sign-out', {}, { headers: this.HEADERS })
+    return this.http.post('/api/sign-out', {}, { headers: this.HEADERS })
       .map(response => response.json())
       .subscribe(
       next => this._signUserOut(next),
@@ -73,8 +73,9 @@ export class UserService {
 
   _signUserOut(response) {
     localStorage.removeItem(this.authToken);
-    this.signedIn = false;
 
     this.router.navigate(["/"])
+    this.signedIn = false;
+    return this.signedIn;
   }
 }
