@@ -27,29 +27,28 @@ KnexUtils.logVersion()
 console.log("Starting in " + process.env.NODE_ENV + " environment");
 
 passport.serializeUser(function (user: User, callback) {
-   callback(null, user.id);
+  callback(null, user.id);
 });
 
 passport.deserializeUser(function (id: number, done) {
   User.getById(id).then(user => {
-     done(null, user);
+    done(null, user);
   }).catch(error => {
-     done(error);
+    done(error);
   });
 });
 
 passport.use(new LocalStrategy({
   usernameField: 'email',
   passwordField: 'password',
-},
-  function (email, password, done) {
-     User.signIn(email, password)
-      .then(user => {
-         done(null, user);
-      }).catch(error => {
-         done(null, false, { message: error });
-      });
-  }
+}, function (email, password, done) {
+  User.signIn(email, password)
+    .then(user => {
+      done(null, user);
+    }).catch(error => {
+      done(null, false, { message: error });
+    });
+}
 ));
 
 export default class App {
