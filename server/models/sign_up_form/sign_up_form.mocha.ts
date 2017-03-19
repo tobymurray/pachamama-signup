@@ -32,7 +32,9 @@ describe('SignUpForm', function () {
 
     return signUpForm.submit(form)
       .then(() => {
-        return (<any>global).knex.raw('select * from user_subscription(1)');
+        return (<any>global).knex('users').max('user_id');
+      }).then((result) => {
+        return (<any>global).knex.raw('select * from user_subscription(' + result[0].max + ')');
       }).then(results => {
         let userSubscriptionData: UserSubscriptionData = results.rows[0];
         assert.equal(userSubscriptionData.first_name, form.firstName);
