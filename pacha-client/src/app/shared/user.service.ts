@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
@@ -11,7 +12,7 @@ export class UserService {
   private authToken: string = 'auth_token';
   private signedIn: boolean = false;
 
-  constructor(private http: Http) {
+  constructor(private http: Http, private router: Router) {
     this.signedIn = !!localStorage.getItem(this.authToken);
   }
 
@@ -73,5 +74,7 @@ export class UserService {
   _signUserOut(response) {
     localStorage.removeItem(this.authToken);
     this.signedIn = false;
+
+    this.router.navigate(["/"])
   }
 }
