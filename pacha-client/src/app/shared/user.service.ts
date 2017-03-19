@@ -7,7 +7,6 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class UserService {
 
-
   private HEADERS = new Headers({ 'Content-Type': 'application/json' });
   private authToken: string = 'auth_token';
   private signedIn: boolean = false;
@@ -22,10 +21,7 @@ export class UserService {
         .map(response => response.json())
         .subscribe(
         next => resolve(this._signUserIn(next)),
-        error => {
-          console.error(error);
-          reject({ error: error });
-        }
+        error => reject(error)
         );
     });
 
@@ -37,10 +33,7 @@ export class UserService {
         .map(response => response.json())
         .subscribe(
         next => resolve(this._signUp(next, email, password)),
-        error => {
-          console.error(error);
-          reject({ error: error });
-        }
+        error => reject(error)
         );
     });
   }
@@ -78,7 +71,6 @@ export class UserService {
   }
 
   _signUserOut(response) {
-    console.log(response);
     localStorage.removeItem(this.authToken);
     this.signedIn = false;
   }
