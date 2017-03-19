@@ -1,5 +1,3 @@
-import { SignInForm } from './models/sign_in_form/sign_in_form';
-import { User } from './models/users/user';
 "use strict";
 
 import * as dotenv from 'dotenv';
@@ -18,7 +16,7 @@ const LocalStrategy = require('passport-local').Strategy;
 
 import { HttpError } from './models/http_error'
 import { router as submitRouter } from './routes/submit';
-import { router as signInRouter } from './routes/sign_in';
+import { User } from './models/users/user';
 
 import { Database } from './database/db_config';
 (<any>global).knex = Database.get();
@@ -27,6 +25,32 @@ import { KnexUtils } from './utils/knexUtils';
 KnexUtils.logVersion()
 
 console.log("Starting in " + process.env.NODE_ENV + " environment");
+
+passport.serializeUser(function (user: User, callback) {
+   callback(null, user.id);
+});
+
+passport.deserializeUser(function (id: number, done) {
+  User.getById(id).then(user => {
+     done(null, user);
+  }).catch(error => {
+     done(error);
+  });
+});
+
+passport.use(new LocalStrategy({
+  usernameField: 'email',
+  passwordField: 'password',
+},
+  function (email, password, done) {
+     User.signIn(email, password)
+      .then(user => {
+         done(null, user);
+      }).catch(error => {
+         done(null, false, { message: error });
+      });
+  }
+));
 
 export default class App {
   public app: express.Application;
@@ -55,33 +79,11 @@ export default class App {
     this.app.use(passport.initialize());
     this.app.use(passport.session());
 
-    passport.serializeUser(function (user: User, callback) {
-      callback(null, user.id);
-    });
-
-    passport.deserializeUser(function (id: number, callback) {
-      User.getById(id).then(user => {
-        callback(null, user);
-      }).catch( error => {
-        callback(error);
-      });
-    });
-
-
-    passport.use(new LocalStrategy(
-      function (username, password, done) {
-        new SignInForm().submit({email: username, password: password})
-        .then(user => {
-          return done(null, user);
-        })
-        .catch(error => {
-          return done(null, false, { message: error });
-        });
-      }
-    ));
-
     this.app.use('/submit', submitRouter);
-    this.app.use('/sign-in', signInRouter);
+
+    this.app.post('/sign-in', passport.authenticate('local'), (request, response) => {
+      response.send(JSON.stringify({ message: "Sign in succeeded" }));
+    });
 
     // catch 404 and forward to error handler
     this.app.use(function (req, res, next) {
