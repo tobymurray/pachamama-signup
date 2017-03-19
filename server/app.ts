@@ -9,6 +9,8 @@ import favicon from 'serve-favicon';
 import logger from 'morgan';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
+import session from 'express-session';
+const KnexSessionStore = require('connect-session-knex')(session);
 
 import { HttpError } from './models/http_error'
 import { router as submitRouter } from './routes/submit';
@@ -26,8 +28,21 @@ export default class App {
   public app: express.Application;
 
   constructor() {
+    const store = new KnexSessionStore({
+      knex: (<any>global).knex,
+      tablename: 'sessions',
+      sidfieldname: 'session_id'
+    });
+
     this.app = express();
 
+    this.app.use(session({
+      secret: process.env.SESSION_SECRET,
+      store: store,
+      resave: false,
+      saveUninitialized: true,
+      cookie: { maxAge: 7 * 24 * 60 * 60 * 1000 }
+    }));
     this.app.use(logger('dev'));
     this.app.use(bodyParser.json());
     this.app.use(bodyParser.urlencoded({ extended: false }));
