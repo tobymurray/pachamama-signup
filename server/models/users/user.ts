@@ -59,6 +59,25 @@ export class User {
       });
   }
 
+  static getById(id: number) {
+    return (<any>global).knex('users').where({
+      user_id: id
+    }).then(users => {
+      return new Promise(function (resolve, reject) {
+        if (users.length === 0) {
+          return reject("Found no user with id " + id);
+        }
+
+        if (users.length > 1) {
+          return reject("Found " + users.length + " users with id " + id);
+        }
+
+        let userData = users[0];
+        return resolve(new User(userData.first_name, userData.last_name, userData.phone_number, userData.email, userData.password, userData.user_id));
+      })
+    });
+  }
+
   static get(email: string) {
     return (<any>global).knex('users').where({
       email: email
