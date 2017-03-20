@@ -5,12 +5,15 @@ exports.seed = function (knex, Promise) {
     .then(function () {
       return bcrypt.hash('not-password', 4);
     }).then(function (encrypted_password) {
+      let now = new Date();
       return knex('users').insert([{
         first_name: 'admin',
         last_name: 'admin',
         phone_number: '613-858-4798',
         email: 'murray.toby@gmail.com',
-        password: encrypted_password
+        password: encrypted_password,
+        created_at: now,
+        updated_at: now
       }]).max('user_id').then(max => {
         return knex.raw('ALTER SEQUENCE users_user_id_seq START WITH ' + (max.rowCount + 1));
       }).then(() => {
