@@ -23,8 +23,11 @@ export class SignInComponent {
   onSignIn() {
     let formContents = this.form.value;
     this.userService.signIn(formContents.email, formContents.password)
-      .then(() => this.router.navigateByUrl(''))
-      .catch(error => console.error("error is", error));
+      .subscribe(
+      isSignedIn => this.router.navigateByUrl(''),
+      error => console.log("Error", error),
+      () => { }
+      );
   }
 
 }
