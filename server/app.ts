@@ -11,8 +11,10 @@ import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import session from 'express-session';
 const KnexSessionStore = require('connect-session-knex')(session);
+
 import passport from 'passport';
-const LocalStrategy = require('passport-local').Strategy;
+import { PassportConfig } from './config/passport_config'
+PassportConfig.configure(passport);
 
 import { HttpError } from './models/http_error'
 import { router as submitRouter } from './routes/submit';
@@ -26,30 +28,6 @@ KnexUtils.logVersion()
 
 console.log("Starting in " + process.env.NODE_ENV + " environment");
 
-passport.serializeUser(function (user: User, callback) {
-  callback(null, user.id);
-});
-
-passport.deserializeUser(function (id: number, done) {
-  User.getById(id).then(user => {
-    done(null, user);
-  }).catch(error => {
-    done(error);
-  });
-});
-
-passport.use(new LocalStrategy({
-  usernameField: 'email',
-  passwordField: 'password',
-}, function (email, password, done) {
-  User.signIn(email, password)
-    .then(user => {
-      done(null, user);
-    }).catch(error => {
-      done(null, false, { message: error });
-    });
-}
-));
 
 export default class App {
   public app: express.Application;
