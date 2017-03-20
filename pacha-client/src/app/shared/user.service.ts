@@ -1,6 +1,7 @@
+import { Router } from '@angular/router';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Rx';
+import { Observable, BehaviorSubject } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
@@ -8,23 +9,17 @@ import 'rxjs/add/operator/catch';
 export class UserService {
 
   private HEADERS = new Headers({ 'Content-Type': 'application/json' });
-  private authToken: string = 'auth_token';
-  private signedIn: boolean = false;
 
-  constructor(private http: Http) {
-    this.signedIn = !!localStorage.getItem(this.authToken);
+  public signedIn: BehaviorSubject<boolean>;
+
+  constructor(private http: Http, private router: Router) {
+    this.signedIn = new BehaviorSubject(false);
   }
 
-  signIn(email: string, password: string) {
-    return new Promise((resolve, reject) => {
-      this.http.post('/api/sign-in', { email: email, password: password }, { headers: this.HEADERS })
-        .map(response => response.json())
-        .subscribe(
-        next => resolve(this._signUserIn(next)),
-        error => reject(error)
-        );
-    });
-
+  signIn(email: string, password: string): Observable<BehaviorSubject<boolean>> {
+    return this.http.post('/api/sign-in', { email: email, password: password }, { headers: this.HEADERS })
+      .map(response => response.json())
+      .map(json => this._signUserIn(json))
   }
 
   signUp(username: string, email: string, password: string) {
@@ -39,7 +34,7 @@ export class UserService {
   }
 
   signOut() {
-    this.http.post('/api/sign-out', {}, { headers: this.HEADERS })
+    return this.http.post('/api/sign-out', {}, { headers: this.HEADERS })
       .map(response => response.json())
       .subscribe(
       next => this._signUserOut(next),
@@ -51,15 +46,15 @@ export class UserService {
     return this.signedIn;
   }
 
-  _signUserIn(response) {
+  _signUserIn(response): BehaviorSubject<boolean> {
     if (response.error) {
       console.log("There was an error: ", response.error);
-      return { error: response.error };
+      this.signedIn.next(false);
+      Observable.throw(response.error);
     }
 
-    localStorage.setItem(this.authToken, 'token');
-    this.signedIn = true;
-    return { error: null }
+    this.signedIn.next(true);
+    return this.signedIn;
   }
 
   _signUp(response, email, password) {
@@ -71,7 +66,9 @@ export class UserService {
   }
 
   _signUserOut(response) {
-    localStorage.removeItem(this.authToken);
-    this.signedIn = false;
+    this.router.navigate(["/"])
+
+    this.signedIn.next(false);
+    return this.signedIn;
   }
 }
