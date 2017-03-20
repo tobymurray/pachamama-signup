@@ -103,4 +103,8 @@ export default class App {
       });
     });
   }
+
+  public static ensureAuthenticated(req, res, next) {
+    return req.user ? next() : res.send(401);
+  }
 }
