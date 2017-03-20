@@ -1,3 +1,10 @@
+## 0.0.6
+Authentication and authorization
+  - Add authentication
+  - Add user sessions
+  - Add administrator placeholder screen, with contents restricted to logged in users
+  - Add some automated testing of subscription addition
+
 ## 0.0.5
 Client refinements
   - Add some styling so desktop looks nicer
