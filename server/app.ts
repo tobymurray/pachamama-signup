@@ -84,6 +84,11 @@ export default class App {
       response.send(JSON.stringify({ message: "Sign in succeeded" }));
     });
 
+    this.app.post('/sign-out', function (req, res) {
+      req.logout();
+      res.send(JSON.stringify({ message: "Signed out" }));
+    });
+
     // catch 404 and forward to error handler
     this.app.use(function (req, res, next) {
       var err = new HttpError('Not Found', 404);
