@@ -1,3 +1,5 @@
 <div>
-  <button type="button" class="btn btn-outline-primary" [routerLink]="['/sign-in']">Administrator</button>
+  <button *ngIf="!isSignedIn.value" type="button" class="btn btn-outline-primary" [routerLink]="['/sign-in']">Sign In</button>
+  <button *ngIf="isSignedIn.value" type="button" class="btn btn-outline-primary" (click)="onSignOut()">Sign Out</button>
+  <button type="button" class="btn btn-outline-primary" [routerLink]="['/admin']">Administrator</button>
 </div>
