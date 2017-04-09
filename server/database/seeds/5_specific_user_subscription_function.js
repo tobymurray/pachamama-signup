@@ -1,9 +1,7 @@
-const TABLE = 'pick_up_locations';
-
 exports.seed = function (knex, Promise) {
   return knex.raw('DROP FUNCTION IF EXISTS user_subscription(int)')
-  .then(() => {
-    return knex.raw(`
+    .then(() => {
+      return knex.raw(`
 CREATE OR REPLACE FUNCTION user_subscription(user_id integer) 
   RETURNS TABLE(
     first_name text,
@@ -66,5 +64,5 @@ WHERE
 ;
 $$ LANGUAGE SQL;
 `)
-  });
+    });
 };
