@@ -1,5 +1,5 @@
 exports.seed = function (knex, Promise) {
-  return knex.raw('DROP FUNCTION IF EXISTS user_subscription(int)')
+  return knex.raw('DROP FUNCTION IF EXISTS user_subscriptions()')
     .then(() => {
       return knex.raw(`
 CREATE OR REPLACE FUNCTION user_subscriptions() 
