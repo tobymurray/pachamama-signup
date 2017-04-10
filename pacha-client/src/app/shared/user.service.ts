@@ -33,6 +33,11 @@ export class UserService {
     });
   }
 
+  getUserSubscriptions() {
+    return this.http.get('/api/user_subscriptions', { headers: this.HEADERS })
+      .map(response => response.json());
+  }
+
   signOut() {
     return this.http.post('/api/sign-out', {}, { headers: this.HEADERS })
       .map(response => response.json())
