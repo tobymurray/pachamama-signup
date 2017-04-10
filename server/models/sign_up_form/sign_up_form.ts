@@ -23,7 +23,10 @@ export class SignUpForm {
   }
 
   public static getSubscriptions() {
-    return (<any>global).knex.raw('select * from user_subscriptions()');
+    return (<any>global).knex.raw('select * from user_subscriptions()')
+      .then(result => {
+        return result.rows;
+      });
   }
 
 }

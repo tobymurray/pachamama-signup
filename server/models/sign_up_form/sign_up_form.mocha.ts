@@ -84,7 +84,7 @@ describe('SignUpForm', function () {
       .then((result) => {
         return SignUpForm.getSubscriptions();
       }).then(results => {
-        assert.equal(results.rows.length, 2);
+        assert.equal(results.length, 2);
       });
   });
 });
