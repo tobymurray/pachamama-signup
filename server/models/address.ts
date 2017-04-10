@@ -8,7 +8,7 @@ export class Address {
   }
 
   static add(line_1: string, line_2: string, line_3: string, city: string,
-    postal_code: string, province: string, country: string) {
+    postal_code: string, province: string, country: string): Promise<Address> {
     let now = new Date();
     return (<any>global).knex('addresses').insert(
       {
