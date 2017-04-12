@@ -19,6 +19,7 @@ PassportConfig.configure(passport);
 import { HttpError } from './models/http_error'
 import { router as submitRouter } from './routes/submit';
 import { User } from './models/users/user';
+import { SignUpForm } from './models/sign_up_form/sign_up_form';
 
 import { Database } from './database/db_config';
 (<any>global).knex = Database.get();
@@ -65,6 +66,12 @@ export default class App {
     this.app.post('/sign-out', function (req, res) {
       req.logout();
       res.send(JSON.stringify({ message: "Signed out" }));
+    });
+
+    this.app.get('/user_subscriptions', function (req, res) {
+      SignUpForm.getSubscriptions().then(subscriptions => {
+        res.send(JSON.stringify(subscriptions));
+      });
     });
 
     // catch 404 and forward to error handler

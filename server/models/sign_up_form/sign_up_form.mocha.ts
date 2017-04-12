@@ -11,7 +11,7 @@ if (!(<any>global).knex) {
 }
 
 describe('SignUpForm', function () {
-  it('do', function () {
+  it("returns a single user's subsription", function () {
     let form: SignUpFormData = {
       firstName: 'firstName',
       lastName: 'lastName',
@@ -57,6 +57,34 @@ describe('SignUpForm', function () {
         assert.equal(userSubscriptionData.pick_up_postal_code, "K2P 1Z2");
         assert.equal(userSubscriptionData.pick_up_province, "Ontario");
         assert.equal(userSubscriptionData.pick_up_country, "Canada");
+      });
+  });
+
+  it("returns all users subscriptions", function () {
+
+    let secondSubscription: SignUpFormData = {
+      firstName: 'firstName2',
+      lastName: 'lastName2',
+      phone: 'phone2',
+      email: 'email2',
+      password: 'password2',
+      addressOne: 'addressOne2',
+      addressTwo: 'addressTwo2',
+      city: 'city2',
+      postalCode: 'postalCode2',
+      province: 'province2',
+      country: 'country2',
+      shareSize: 'halfShare',
+      pickUpLocation: 'Moo Shu Ice Cream'
+    };
+
+    let signUpForm = new SignUpForm();
+
+    return signUpForm.submit(secondSubscription)
+      .then((result) => {
+        return SignUpForm.getSubscriptions();
+      }).then(results => {
+        assert.equal(results.length, 2);
       });
   });
 });

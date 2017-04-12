@@ -50,10 +50,10 @@ export class CsaSignUpComponent {
       "addressTwo": '',
       "city": ["", Validators.required],
       "postalCode": ["", Validators.required],
-      "province": ["", Validators.required],
+      "province": [this.defaultProvince, Validators.required],
       "phone": ["", Validators.required],
       "email": ["", Validators.required],
-      "shareSize": ["", Validators.required],
+      "shareSize": [],
       "pickUpLocation": '',
       "passwords": formBuilder.group({
         password: ["", Validators.required],

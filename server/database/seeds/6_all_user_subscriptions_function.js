@@ -1,10 +1,8 @@
-const TABLE = 'pick_up_locations';
-
 exports.seed = function (knex, Promise) {
-  return knex.raw('DROP FUNCTION IF EXISTS user_subscription(int)')
-  .then(() => {
-    return knex.raw(`
-CREATE OR REPLACE FUNCTION user_subscription(user_id integer) 
+  return knex.raw('DROP FUNCTION IF EXISTS user_subscriptions()')
+    .then(() => {
+      return knex.raw(`
+CREATE OR REPLACE FUNCTION user_subscriptions() 
   RETURNS TABLE(
     first_name text,
     last_name text,
@@ -61,10 +59,8 @@ FROM users
     ON pick_up_address.address_id = pick_up_locations.address_id
   JOIN subscription_types
     ON subscription_types.subscription_type_id = subscriptions.subscription_type_id
-WHERE
-  users.user_id = $1
 ;
 $$ LANGUAGE SQL;
 `)
-  });
+    });
 };
