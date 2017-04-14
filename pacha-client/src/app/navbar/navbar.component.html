@@ -12,6 +12,7 @@
       <a class="nav-item nav-link" href="https://pachamamaorganics.ca/">Blog</a>
       <a class="nav-item nav-link" href="http://temp.lov-owa.org/">Recipes</a>
       <a class="nav-item nav-link" href="https://pachamamaorganics.ca/">Goat Yoga</a>
+      <a *ngIf="isSignedIn" class="nav-item nav-link" [routerLink]="['/user', 'test']"> Profile</a>
     </div>
   </div>
 </nav>
