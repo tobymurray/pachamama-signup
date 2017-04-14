@@ -22,7 +22,7 @@
     "@angular/platform-browser": "^4.0.1",
     "@angular/platform-browser-dynamic": "^4.0.1",
     "@angular/router": "^4.0.1",
-    "@ng-bootstrap/ng-bootstrap": "^1.0.0-alpha.22",
+    "@ng-bootstrap/ng-bootstrap": "^1.0.0-alpha.23",
     "bootstrap": "4.0.0-alpha.6",
     "classlist.js": "^1.1.20150312",
     "core-js": "^2.4.1",
