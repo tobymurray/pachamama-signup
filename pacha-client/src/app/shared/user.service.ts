@@ -19,7 +19,7 @@ export class UserService {
   signIn(email: string, password: string): Observable<BehaviorSubject<boolean>> {
     return this.http.post('/api/sign-in', { email: email, password: password }, { headers: this.HEADERS })
       .map(response => response.json())
-      .map(json => this._signUserIn(json))
+      .map(json => this.signUserIn(json))
   }
 
   signUp(username: string, email: string, password: string) {
@@ -27,7 +27,7 @@ export class UserService {
       this.http.post('/api/sign-up', { username: username, email: email, password: password }, { headers: this.HEADERS })
         .map(response => response.json())
         .subscribe(
-        next => resolve(this._signUp(next, email, password)),
+        next => resolve(this.signUserUp(next, email, password)),
         error => reject(error)
         );
     });
@@ -42,7 +42,7 @@ export class UserService {
     return this.http.post('/api/sign-out', {}, { headers: this.HEADERS })
       .map(response => response.json())
       .subscribe(
-      next => this._signUserOut(next),
+      next => this.signUserOut(next),
       error => console.error(error),
     );
   }
@@ -51,7 +51,7 @@ export class UserService {
     return this.signedIn;
   }
 
-  _signUserIn(response): BehaviorSubject<boolean> {
+  private signUserIn(response): BehaviorSubject<boolean> {
     if (response.error) {
       console.log("There was an error: ", response.error);
       this.signedIn.next(false);
@@ -62,7 +62,7 @@ export class UserService {
     return this.signedIn;
   }
 
-  _signUp(response, email, password) {
+  private signUserUp(response, email, password) {
     if (response.error) {
       console.log("There was an error: ", response.error);
       return { error: response.error };
@@ -70,7 +70,7 @@ export class UserService {
     return { error: null };
   }
 
-  _signUserOut(response) {
+  private signUserOut(response) {
     this.router.navigate(["/"])
 
     this.signedIn.next(false);
