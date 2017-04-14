@@ -18,6 +18,7 @@ PassportConfig.configure(passport);
 
 import { HttpError } from './models/http_error'
 import { router as submitRouter } from './routes/submit';
+import { router as userDetailsRouter } from './routes/userDetails';
 import { User } from './models/users/user';
 import { SignUpForm } from './models/sign_up_form/sign_up_form';
 
@@ -58,6 +59,7 @@ export default class App {
     this.app.use(passport.session());
 
     this.app.use('/submit', submitRouter);
+    this.app.use('/', userDetailsRouter);
 
     this.app.post('/sign-in', passport.authenticate('local'), (request, response) => {
       response.send(JSON.stringify({ message: "Sign in succeeded" }));
