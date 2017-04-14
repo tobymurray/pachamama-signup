@@ -1,3 +1,4 @@
+import { UserProfileComponent } from './user-profile/user-profile.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -11,7 +12,8 @@ const routes: Routes = [
   { path: '', component: PublicLandingComponent },
   { path: 'thanks', component: SignUpThanksComponent },
   { path: 'sign-in', component: SignInComponent },
-  { path: 'admin', component: AdminPanelComponent, canActivate: [AuthenticatedGuard] }
+  { path: 'admin', component: AdminPanelComponent, canActivate: [AuthenticatedGuard] },
+  { path: 'user/:id', component: UserProfileComponent, canActivate: [AuthenticatedGuard] }
 ];
 
 @NgModule({

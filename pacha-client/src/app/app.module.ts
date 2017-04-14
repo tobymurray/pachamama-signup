@@ -17,6 +17,7 @@ import { PublicLandingComponent } from './public-landing/public-landing.componen
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpThanksComponent } from './sign-up-thanks/sign-up-thanks.component';
 import { UserService } from './shared/user.service';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { UserService } from './shared/user.service';
     SignUpThanksComponent,
     FooterComponent,
     SignInComponent,
-    AdminPanelComponent
+    AdminPanelComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
