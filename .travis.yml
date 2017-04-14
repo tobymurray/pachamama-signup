@@ -12,6 +12,7 @@ services:
   - postgresql
 
 addons:
+  firefox: latest
   apt:
     sources:
       - google-chrome
