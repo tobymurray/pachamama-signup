@@ -14,6 +14,10 @@ export class UserService {
 
   constructor(private http: Http, private router: Router) {
     this.signedIn = new BehaviorSubject(false);
+    this.http.get('/api/user/isSignedIn', { headers: this.HEADERS })
+      .map(response => response.json())
+      .map(json => this._checkIfAlreadySignedIn(json))
+      .subscribe();
   }
 
   signIn(email: string, password: string): Observable<BehaviorSubject<boolean>> {
@@ -49,6 +53,10 @@ export class UserService {
 
   isSignedIn() {
     return this.signedIn;
+  }
+
+  private _checkIfAlreadySignedIn(json) {
+    this.signedIn.next(json['isSignedIn']);
   }
 
   _signUserIn(response): BehaviorSubject<boolean> {
