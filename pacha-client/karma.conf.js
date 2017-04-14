@@ -41,6 +41,6 @@ module.exports = function (config) {
     autoWatch: true,
     browsers: ['Chrome', 'Firefox', 'FirefoxDeveloper', 'FirefoxAurora', 'FirefoxNightly'],
     singleRun: false,
-    concurrency: 2
+    concurrency: 3
   });
 };
